@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="CatalogoCloud.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+
+<!-- 
+     ========================================================
+     Módulo: LMSGI - CFGS DAM/DAW
+     Autor: Willman Acosta Lugo
+     Reto Práctico: Auditoría de Infraestructura Cloud
+     Archivo: CatalogoCloud_v2.xml
+     ========================================================
+-->
+
+<catalogo_cloud empresa="TechNova Cloud">
+    
+    <!-- Data Center: Región Sur (Madrid) -->
+    <centro_datos ubicacion="Madrid" zona="eu-sur-1">
+        
+        <servidor id="srv-web-01" rack="A1" estado="activo">
+            <hardware>
+                <cpu nucleos="16" arquitectura="x86_64">Intel Xeon Gold</cpu>
+                <ram unidad="GB">64</ram>
+                <discos>
+                    <disco tipo="NVMe" capacidad_tb="2" principal="true"/>
+                    <disco tipo="SSD" capacidad_tb="4" principal="false"/>
+                </discos>
+            </hardware>
+            <software>
+                <red>
+                    <ip_fija>10.0.0.10</ip_fija>
+                </red>
+                <so version="22.04">Ubuntu Server</so>
+                <servicios>
+                    <servicio puerto="80">Nginx HTTP</servicio>
+                    <servicio puerto="443">Nginx HTTPS</servicio>
+                </servicios>
+            </software>
+            <auditoria>
+                <fecha_revision>2025-03-01</fecha_revision>
+                <tecnico>Laura Gómez</tecnico>
+                <nota>Servidor web en producción estable.</nota>
+            </auditoria>
+        </servidor>
+        
+        <servidor id="srv-db-01" rack="A2" estado="mantenimiento">
+            <hardware>
+                <cpu nucleos="64" arquitectura="ARM">Ampere Altra</cpu>
+                <ram unidad="GB">256</ram>
+                <discos>
+                    <disco tipo="NVMe" capacidad_tb="8" principal="true"/>
+                </discos>
+            </hardware>
+            <software>
+                <red>
+                    <dhcp valor="no">configurado manualmente</dhcp>
+                </red>
+                <so version="15">Debian GNU/Linux</so>
+                <servicios>
+                    <servicio puerto="5432">PostgreSQL</servicio>
+                </servicios>
+            </software>
+            <auditoria>
+                <fecha_revision>2025-02-20</fecha_revision>
+                <tecnico>Carlos Ruiz</tecnico>
+                <nota>Servidor en mantenimiento programado.</nota>
+            </auditoria>
+        </servidor>
+        
+    </centro_datos>
+    
+    <!-- Data Center: Región Central (París) -->
+    <centro_datos ubicacion="Paris" zona="eu-centro-1">
+        
+        <servidor id="srv-ia-01" rack="B1" estado="activo">
+            <hardware>
+                <cpu nucleos="32" arquitectura="x86_64">AMD EPYC</cpu>
+                <ram unidad="GB">128</ram>
+                <gpu modelo="NVIDIA A100" vram_gb="80">Tensor Core</gpu>
+                <discos>
+                    <disco tipo="NVMe" capacidad_tb="4" principal="true"/>
+                </discos>
+            </hardware>
+            <software>
+                <red>
+                    <ip_fija>10.1.0.50</ip_fija>
+                </red>
+                <so version="22.04">Ubuntu Server</so>
+                <servicios>
+                    <servicio puerto="8888">Jupyter Hub</servicio>
+                </servicios>
+            </software>
+            <auditoria>
+                <fecha_revision>2025-03-05</fecha_revision>
+                <tecnico>María López</tecnico>
+                <nota>Nodo de IA con GPU validado para cargas intensivas.</nota>
+            </auditoria>
+        </servidor>
+        
+        <servidor id="srv-backup-01" rack="B2" estado="apagado">
+            <hardware>
+                <cpu nucleos="8" arquitectura="x86_64">Intel Xeon Bronze</cpu>
+                <ram unidad="GB">32</ram>
+                <discos>
+                    <disco tipo="HDD" capacidad_tb="50" principal="true"/>
+                </discos>
+            </hardware>
+            <software>
+                <red>
+                    <dhcp valor="si">asignación dinámica</dhcp>
+                </red>
+                <so version="9">CentOS Stream</so>
+                <servicios>
+                    <servicio puerto="22">OpenSSH</servicio>
+                    <servicio puerto="873">Rsync</servicio>
+                </servicios>
+            </software>
+            <auditoria>
+                <fecha_revision>2025-01-15</fecha_revision>
+                <tecnico>Javier Pérez</tecnico>
+                <nota>Servidor de backup apagado fuera de ventana de copia.</nota>
+            </auditoria>
+        </servidor>
+        
+    </centro_datos>
+    
+</catalogo_cloud>
